@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../src/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../src/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../src/favicon-16x16.png">
+    <script type="module" src="./features/test.js"></script>
+    <script type="module" src="./features/homepage.js" async></script>
+    <script type="module" src="./features/comments.js" async></script>
+    <script type="module" src="./features/search.js" async></script>
+    <script src="./features/darklite.js" async></script>
+    <title>Featherlite Reddit</title>
+</head>
+
+<body>
+    <h1 id="header">Featherlite Reddit</h1>
+    <main>
+        <div id="display">
+            <div id="search">
+                <form id="search-form" action="">
+                    <label for="search-text">Search</label>
+                    <input type="search" id="search-text" placeholder="enter a word or phrase">
+                    <input type="submit" id="search-button" class="button">
+                </form>
+            </div>
+            <div id="button-box">
+                <h2 id="content-header">r/all</h2>
+                <button id="all-button" class="button">r/all</button>
+                <button id="popular-button" class="button">r/popular</button>
+                <button id="dark-lite" data-style="lite" class="button">Dark Mode</button>
+            </div>
+            <div id="content"></div>
+        </div>
+    </main>
+    <footer class="footer">Footer stuff</footer>
+</body>
+
+</html>
+
+<!-- arguments
+?limit sets how many listings you want per fetch
+?after ?before uses dynamically generated properties from the JSON object that will fetch the next batch of listings
+data.after
+data.before
+
+video post url to use?
+data.children[2].data.media.reddit_video.fallback_url -->
