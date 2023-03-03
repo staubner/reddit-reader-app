@@ -40,6 +40,8 @@ const popular = redditDataPopular.map(obj => obj.data);
 
 const pagePopular = [];
 
+/* console.log(popular) */
+
 rAll.forEach((obj) => {
 
     let post = document.createElement('div');
@@ -69,21 +71,51 @@ rAll.forEach((obj) => {
     post.appendChild(subreddit);
 
     let thumbnailContainer = document.createElement('div')
-    thumbnailContainer.setAttribute('class', 'thumbnail-container');
-    let thumbnailImg = document.createElement('img');
-    thumbnailImg.setAttribute('class', 'thumbnail');
+    thumbnailContainer.setAttribute('id', 'thumbnail-container');
+    
 
-    if (obj.thumbnail !== "self" && !obj.media) {
-        thumbnailContainer.setAttribute('data-link', `${obj.url}`)
+    if (obj.media && obj.media.reddit_video)  {
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        thumbnailContainer.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.thumbnail === 'nsfw' || obj.thumbnail === 'default' || obj.thumbnail === 'self') {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.media && obj.media.oembed) {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', `${obj.thumbnail}`)
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (!obj.media) {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', `${obj.thumbnail}`)
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
     };
 
-    if (obj.thumbnail.length < 8) {
-        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png');
-    } else {
-        thumbnailImg.setAttribute('src', `${obj.thumbnail}`);
-    }
-    thumbnailContainer.appendChild(thumbnailImg);
-    post.appendChild(thumbnailContainer);
+    
 
     let numComments = document.createElement('span');
     numComments.setAttribute('class', 'num-comments');
@@ -129,22 +161,53 @@ popular.forEach((obj) => {
     subreddit.innerText = `on ${obj.subreddit_name_prefixed} `;
     post.appendChild(subreddit);
 
+
+    
     let thumbnailContainer = document.createElement('div')
     thumbnailContainer.setAttribute('id', 'thumbnail-container');
-    let thumbnailImg = document.createElement('img');
-    thumbnailImg.setAttribute('class', 'thumbnail');
+    
 
-    if (obj.thumbnail !== "self" && !obj.media) {
-        thumbnailContainer.setAttribute('data-link', `${obj.url}`)
+    if (obj.media && obj.media.reddit_video)  {
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        thumbnailContainer.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.thumbnail === 'nsfw' || obj.thumbnail === 'default' || obj.thumbnail === 'self') {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.media && obj.media.oembed) {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', `${obj.thumbnail}`)
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (!obj.media) {
+        let imgLink = document.createElement('a');
+        imgLink.setAttribute('href', `${obj.url}`);
+        imgLink.setAttribute('target', '_blank')
+        imgLink.setAttribute('class', 'link')
+        thumbnailContainer.appendChild(imgLink)
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', `${obj.thumbnail}`)
+        imgLink.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
     };
-
-    if (obj.thumbnail.length < 8) {
-        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png');
-    } else {
-        thumbnailImg.setAttribute('src', `${obj.thumbnail}`);
-    }
-    thumbnailContainer.appendChild(thumbnailImg);
-    post.appendChild(thumbnailContainer);
+    
 
     let numComments = document.createElement('span');
     numComments.setAttribute('class', 'num-comments');
@@ -185,7 +248,7 @@ btnAll.addEventListener('click', () => {
 });
 
 //event listener for post URL
-const postLinks = document.querySelectorAll('.thumbnail-container')
+/* const postLinks = document.querySelectorAll('.thumbnail-container')
 
 postLinks.forEach(post => console.log(post.dataset.link))
 
@@ -195,7 +258,7 @@ postLinks.forEach((link) => {
             window.location.href = `${link.dataset.link}`
         };
     })
-})
+}) */
 
 //get array of post title nodes for comments
 
