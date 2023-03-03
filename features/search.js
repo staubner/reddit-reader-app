@@ -58,14 +58,20 @@ searchForm.addEventListener('submit', async (event) => {
 
         let thumbnailContainer = document.createElement('div')
         thumbnailContainer.setAttribute('id', 'thumbnail-container');
-        
-        if (obj.media && obj.media.reddit_video)  {
+
+        if (obj.media && obj.media.reddit_video) {
             let thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
             thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
-        } else if (obj.thumbnail === 'nsfw' || obj.thumbnail === 'default' || obj.thumbnail === 'self') {
+        } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw') {
+            let thumbnailImg = document.createElement('img');
+            thumbnailImg.setAttribute('class', 'thumbnail');
+            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            thumbnailContainer.appendChild(thumbnailImg);
+            post.appendChild(thumbnailContainer);
+        } else if (obj.thumbnail === 'default') {
             let imgLink = document.createElement('a');
             imgLink.setAttribute('href', `${obj.url}`);
             imgLink.setAttribute('target', '_blank')

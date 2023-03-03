@@ -31,7 +31,7 @@ const rAll = redditDataAll.map(obj => obj.data);
 
 const pageAll = [];
 
-console.log(rAll)
+// console.log(rAll)
 
 //handle r/popular data
 const redditDataPopular = await redditPopular();
@@ -40,7 +40,7 @@ const popular = redditDataPopular.map(obj => obj.data);
 
 const pagePopular = [];
 
-/* console.log(popular) */
+console.log(popular)
 
 rAll.forEach((obj) => {
 
@@ -72,15 +72,21 @@ rAll.forEach((obj) => {
 
     let thumbnailContainer = document.createElement('div')
     thumbnailContainer.setAttribute('id', 'thumbnail-container');
-    
 
-    if (obj.media && obj.media.reddit_video)  {
+
+    if (obj.media && obj.media.reddit_video) {
         let thumbnailImg = document.createElement('img');
         thumbnailImg.setAttribute('class', 'thumbnail');
         thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
         thumbnailContainer.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
-    } else if (obj.thumbnail === 'nsfw' || obj.thumbnail === 'default' || obj.thumbnail === 'self') {
+    } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw') {
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        thumbnailContainer.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.thumbnail === 'default') {
         let imgLink = document.createElement('a');
         imgLink.setAttribute('href', `${obj.url}`);
         imgLink.setAttribute('target', '_blank')
@@ -115,7 +121,7 @@ rAll.forEach((obj) => {
         post.appendChild(thumbnailContainer);
     };
 
-    
+
 
     let numComments = document.createElement('span');
     numComments.setAttribute('class', 'num-comments');
@@ -162,18 +168,24 @@ popular.forEach((obj) => {
     post.appendChild(subreddit);
 
 
-    
+
     let thumbnailContainer = document.createElement('div')
     thumbnailContainer.setAttribute('id', 'thumbnail-container');
-    
 
-    if (obj.media && obj.media.reddit_video)  {
+
+    if (obj.media && obj.media.reddit_video) {
         let thumbnailImg = document.createElement('img');
         thumbnailImg.setAttribute('class', 'thumbnail');
         thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
         thumbnailContainer.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
-    } else if (obj.thumbnail === 'nsfw' || obj.thumbnail === 'default' || obj.thumbnail === 'self') {
+    } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw') {
+        let thumbnailImg = document.createElement('img');
+        thumbnailImg.setAttribute('class', 'thumbnail');
+        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        thumbnailContainer.appendChild(thumbnailImg);
+        post.appendChild(thumbnailContainer);
+    } else if (obj.thumbnail === 'default') {
         let imgLink = document.createElement('a');
         imgLink.setAttribute('href', `${obj.url}`);
         imgLink.setAttribute('target', '_blank')
@@ -207,7 +219,7 @@ popular.forEach((obj) => {
         imgLink.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
     };
-    
+
 
     let numComments = document.createElement('span');
     numComments.setAttribute('class', 'num-comments');
@@ -263,3 +275,5 @@ postLinks.forEach((link) => {
 //get array of post title nodes for comments
 
 export const postComments = document.querySelectorAll('.num-comments')
+
+// console.log(postComments)
