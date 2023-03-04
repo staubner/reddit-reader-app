@@ -40,7 +40,7 @@ const popular = redditDataPopular.map(obj => obj.data);
 
 const pagePopular = [];
 
-console.log(popular)
+// console.log(popular)
 
 rAll.forEach((obj) => {
 
@@ -135,6 +135,58 @@ rAll.forEach((obj) => {
     post.appendChild(upvotes);
 
     pageAll.push(post)
+
+    const postComments = document.querySelectorAll('.num-comments')
+
+// console.log(postComments);
+
+postComments.forEach((post) => {
+    post.addEventListener('click', async () => {
+        let permalink = post.dataset.permalink;
+        let postBox = document.querySelector('.post')
+
+        const getComments = async () => {
+            const response = await fetch(`https://www.reddit.com${permalink}.json`);
+            const json = await response.json();
+            return json[1].data.children;
+        };
+
+        const commentData = await getComments();
+
+        const commentsArray = commentData.map(comment => comment.data);
+
+        console.log(commentsArray)
+
+
+        const commentBox = document.createElement('div');
+        commentBox.setAttribute('class', 'comment-box');
+
+        let comAuthor = document.createElement('span');
+        comAuthor.setAttribute('class', 'author');
+        comAuthor.innerText = `${post.author} `;
+        commentBox.appendChild(comAuthor);
+
+        let comTime = document.createElement('span');
+        comTime.setAttribute('class', 'comment-time');
+        comTime.innerText = `${convertEpoch(post.created)}`;
+        commentBox.appendChild(comTime);
+
+        let commentList = document.createElement('div')
+        commentList.setAttribute('class', 'comments')
+
+        commentsArray.forEach((comment) => {
+            let commentText = document.createElement('div');
+            commentText.innerHTML = `${comment.body_html}`
+            commentList.appendChild(commentText);
+        })
+
+        // console.log(commentList)
+
+        commentBox.appendChild(commentList);
+
+        postBox.appendChild(commentBox)
+    });
+});
 });
 
 contentBox.append(...pageAll);
@@ -233,6 +285,58 @@ popular.forEach((obj) => {
     post.appendChild(upvotes);
 
     pagePopular.push(post)
+
+    const postComments = document.querySelectorAll('.num-comments')
+
+// console.log(postComments);
+
+postComments.forEach((post) => {
+    post.addEventListener('click', async () => {
+        let permalink = post.dataset.permalink;
+        let postBox = document.querySelector('.post')
+
+        const getComments = async () => {
+            const response = await fetch(`https://www.reddit.com${permalink}.json`);
+            const json = await response.json();
+            return json[1].data.children;
+        };
+
+        const commentData = await getComments();
+
+        const commentsArray = commentData.map(comment => comment.data);
+
+        console.log(commentsArray)
+
+
+        const commentBox = document.createElement('div');
+        commentBox.setAttribute('class', 'comment-box');
+
+        let comAuthor = document.createElement('span');
+        comAuthor.setAttribute('class', 'author');
+        comAuthor.innerText = `${post.author} `;
+        commentBox.appendChild(comAuthor);
+
+        let comTime = document.createElement('span');
+        comTime.setAttribute('class', 'comment-time');
+        comTime.innerText = `${convertEpoch(post.created)}`;
+        commentBox.appendChild(comTime);
+
+        let commentList = document.createElement('div')
+        commentList.setAttribute('class', 'comments')
+
+        commentsArray.forEach((comment) => {
+            let commentText = document.createElement('div');
+            commentText.innerHTML = `${comment.body_html}`
+            commentList.appendChild(commentText);
+        })
+
+        // console.log(commentList)
+
+        commentBox.appendChild(commentList);
+
+        postBox.appendChild(commentBox)
+    });
+});
 });
 
 //event listeners for r/all and r/popular buttons
@@ -272,8 +376,54 @@ postLinks.forEach((link) => {
     })
 }) */
 
-//get array of post title nodes for comments
+// const postComments = document.querySelectorAll('.num-comments')
 
-export const postComments = document.querySelectorAll('.num-comments')
+// // console.log(postComments);
 
-// console.log(postComments)
+// postComments.forEach((post) => {
+//     post.addEventListener('click', async () => {
+//         let permalink = post.dataset.permalink;
+//         let postBox = document.querySelector('.post')
+
+//         const getComments = async () => {
+//             const response = await fetch(`https://www.reddit.com${permalink}.json`);
+//             const json = await response.json();
+//             return json[1].data.children;
+//         };
+
+//         const commentData = await getComments();
+
+//         const commentsArray = commentData.map(comment => comment.data);
+
+//         console.log(commentsArray)
+
+
+//         const commentBox = document.createElement('div');
+//         commentBox.setAttribute('class', 'comment-box');
+
+//         let comAuthor = document.createElement('span');
+//         comAuthor.setAttribute('class', 'author');
+//         comAuthor.innerText = `${post.author} `;
+//         commentBox.appendChild(comAuthor);
+
+//         let comTime = document.createElement('span');
+//         comTime.setAttribute('class', 'comment-time');
+//         comTime.innerText = `${convertEpoch(post.created)}`;
+//         commentBox.appendChild(comTime);
+
+//         let commentList = document.createElement('div')
+//         commentList.setAttribute('class', 'comments')
+
+//         commentsArray.forEach((comment) => {
+//             let commentText = document.createElement('div');
+//             commentText.innerHTML = `${comment.body_html}`
+//             commentList.appendChild(commentText);
+//         })
+
+//         // console.log(commentList)
+
+//         commentBox.appendChild(commentList);
+
+//         postBox.appendChild(commentBox)
+//     });
+// });

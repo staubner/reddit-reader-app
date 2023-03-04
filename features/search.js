@@ -108,6 +108,7 @@ searchForm.addEventListener('submit', async (event) => {
 
         let numComments = document.createElement('span');
         numComments.setAttribute('class', 'num-comments');
+        numComments.setAttribute('data-permalink', `${obj.permalink}`)
         numComments.innerText = `${obj.num_comments} comments`;
         post.appendChild(numComments);
 

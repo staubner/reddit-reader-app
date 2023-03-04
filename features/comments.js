@@ -1,12 +1,8 @@
 import { convertEpoch } from "../util/helper-functions.js";
-import { postComments } from "./homepage.js";
 
 //creates links to individual posts and sets listeners
 
-// console.log(postComments);
+//post permalink returns array with two elements, [1] contains comments. 
+// [1].data.children[0].data.body_html injected by innerHTML?
 
-// postComments.forEach((post) => {
-//     post.addEventListener('click', () => {
-
-//     })
-// })
+ 
