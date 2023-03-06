@@ -5,7 +5,7 @@ const searchForm = document.getElementById('search-form');
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    //send search results
+    //send search terms
     const getSearch = async () => {
         const response = await fetch(`https://www.reddit.com/search.json?q=${event.target[0].value}`);
         const json = await response.json();

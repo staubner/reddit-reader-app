@@ -10,7 +10,7 @@ document.getElementById('popular-button').addEventListener('click', async () => 
     };
 
     const contentBox = document.getElementById('content');
-    
+
     // handle r/all data
     const redditDataPopular = await redditPopular();
 
@@ -53,7 +53,7 @@ document.getElementById('popular-button').addEventListener('click', async () => 
             thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
-        } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw') {
+        } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
             let thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
             thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
@@ -70,7 +70,7 @@ document.getElementById('popular-button').addEventListener('click', async () => 
             thumbnailImg.setAttribute('src', `${obj.url}`)
             imgLink.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
-        } else if (obj.thumbnail === 'default' || obj.thumbnail === 'spoiler') {
+        } else if (obj.thumbnail === 'default') {
             let imgLink = document.createElement('a');
             imgLink.setAttribute('href', `${obj.url}`);
             imgLink.setAttribute('target', '_blank')
