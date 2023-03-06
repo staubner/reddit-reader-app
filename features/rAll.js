@@ -1,40 +1,29 @@
 import { convertEpoch } from "../util/helper-functions.js";
 
-const searchForm = document.getElementById('search-form');
+//handle r/all data
+document.getElementById('all-button').addEventListener('click', async () => {
 
-searchForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    //send search results
-    const getSearch = async () => {
-        const response = await fetch(`https://www.reddit.com/search.json?q=${event.target[0].value}`);
+    const redditAll = async () => {
+        const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
         const json = await response.json();
+        // console.log(json)
         return json.data.children;
-    }
-
-    /* try {
-        const test = await getSearch();
-    } catch (error) {
-        alert(`${error.name}: ${error.message}`)
-    } */
-
-    const searchResults = await getSearch();
-
-    const searchData = searchResults.map(obj => obj.data);
+    };
 
     const contentBox = document.getElementById('content');
+    // handle r/all data
+    const redditDataAll = await redditAll();
 
-    console.log(searchData)
+    const rAll = redditDataAll.map(obj => obj.data);
 
-    const pageSearch = [];
+    const pageAll = [];
 
-    searchData.forEach((obj) => {
+    // console.log(rAll)
+
+    rAll.forEach((obj) => {
 
         let post = document.createElement('div');
         post.setAttribute('class', 'post');
-
-        // let hr = document.createElement('hr');
-        // post.appendChild(hr);
 
         let postTitle = document.createElement('h3');
         postTitle.setAttribute('class', 'post-title');
@@ -58,6 +47,7 @@ searchForm.addEventListener('submit', async (event) => {
 
         let thumbnailContainer = document.createElement('div')
         thumbnailContainer.setAttribute('id', 'thumbnail-container');
+
 
         if (obj.media && obj.media.reddit_video) {
             let thumbnailImg = document.createElement('img');
@@ -128,16 +118,13 @@ searchForm.addEventListener('submit', async (event) => {
         upvotes.innerText = ` with ${obj.ups} upvotes`;
         post.appendChild(upvotes);
 
-        pageSearch.push(post);
-    })
+        pageAll.push(post)
+    });
+
 
     while (contentBox.firstChild) {
-        contentBox.removeChild(contentBox.firstChild)
+        contentBox.removeChild(contentBox.firstChild);
     };
 
-    contentBox.append(...pageSearch);
-
-    document.getElementById('content-header').innerText = `Search Results for "${event.target[0].value}"`
-
-    document.getElementById('search-text').value = '';
+    contentBox.append(...pageAll);
 });
