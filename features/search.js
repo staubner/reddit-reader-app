@@ -12,12 +12,6 @@ searchForm.addEventListener('submit', async (event) => {
         return json.data.children;
     }
 
-    /* try {
-        const test = await getSearch();
-    } catch (error) {
-        alert(`${error.name}: ${error.message}`)
-    } */
-
     const searchResults = await getSearch();
 
     const searchData = searchResults.map(obj => obj.data);
@@ -32,9 +26,6 @@ searchForm.addEventListener('submit', async (event) => {
 
         let post = document.createElement('div');
         post.setAttribute('class', 'post');
-
-        // let hr = document.createElement('hr');
-        // post.appendChild(hr);
 
         let postTitle = document.createElement('h3');
         postTitle.setAttribute('class', 'post-title');
@@ -135,9 +126,9 @@ searchForm.addEventListener('submit', async (event) => {
         contentBox.removeChild(contentBox.firstChild)
     };
 
-    contentBox.append(...pageSearch);
-
     document.getElementById('content-header').innerText = `Search Results for "${event.target[0].value}"`
 
     document.getElementById('search-text').value = '';
+
+    contentBox.append(...pageSearch);
 });

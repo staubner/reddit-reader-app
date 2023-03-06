@@ -6,19 +6,17 @@ document.getElementById('all-button').addEventListener('click', async () => {
     const redditAll = async () => {
         const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
         const json = await response.json();
-        // console.log(json)
         return json.data.children;
     };
 
     const contentBox = document.getElementById('content');
+
     // handle r/all data
     const redditDataAll = await redditAll();
 
     const rAll = redditDataAll.map(obj => obj.data);
 
     const pageAll = [];
-
-    // console.log(rAll)
 
     rAll.forEach((obj) => {
 

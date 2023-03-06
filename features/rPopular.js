@@ -6,19 +6,17 @@ document.getElementById('popular-button').addEventListener('click', async () => 
     const redditPopular = async () => {
         const response = await fetch(`https://www.reddit.com/r/popular.json?limit=25`);
         const json = await response.json();
-        // console.log(json)
         return json.data.children;
     };
 
     const contentBox = document.getElementById('content');
+    
     // handle r/all data
     const redditDataPopular = await redditPopular();
 
     const rPopular = redditDataPopular.map(obj => obj.data);
 
     const pagePopular = [];
-
-    // console.log(rAll)
 
     rPopular.forEach((obj) => {
 
