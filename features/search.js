@@ -18,7 +18,7 @@ searchForm.addEventListener('submit', async (event) => {
 
     const contentBox = document.getElementById('content');
 
-    console.log(searchData)
+    // console.log(searchData)
 
     const pageSearch = [];
 
@@ -51,12 +51,14 @@ searchForm.addEventListener('submit', async (event) => {
         thumbnailContainer.setAttribute('id', 'thumbnail-container');
 
         if (obj.media && obj.media.reddit_video) {
-            let thumbnailImg = document.createElement('img');
-            thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            let thumbnailImg = document.createElement('video');
+            thumbnailImg.setAttribute('class', 'video');
+            thumbnailImg.setAttribute('type', 'video/mp4');
+            thumbnailImg.setAttribute('src', `${obj.media.reddit_video.fallback_url}`);
+            thumbnailImg.setAttribute('controls', '')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
-        } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw') {
+        } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
             let thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
             thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
@@ -73,7 +75,7 @@ searchForm.addEventListener('submit', async (event) => {
             thumbnailImg.setAttribute('src', `${obj.url}`)
             imgLink.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
-        } else if (obj.thumbnail === 'default' || obj.thumbnail === 'spoiler') {
+        } else if (obj.thumbnail === 'default') {
             let imgLink = document.createElement('a');
             imgLink.setAttribute('href', `${obj.url}`);
             imgLink.setAttribute('target', '_blank')
@@ -129,6 +131,9 @@ searchForm.addEventListener('submit', async (event) => {
     document.getElementById('content-header').innerText = `Search Results for "${event.target[0].value}"`
 
     document.getElementById('search-text').value = '';
+
+    document.getElementById('all-button').style.backgroundColor = '';
+    document.getElementById('popular-button').style.backgroundColor = '';
 
     contentBox.append(...pageSearch);
 });

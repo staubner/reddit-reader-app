@@ -1,4 +1,5 @@
 import { convertEpoch } from "../util/helper-functions.js";
+import { generateComments } from "./comments.js";
 
 //loading reddit/r/all on page load
 
@@ -19,6 +20,8 @@ const contentBox = document.getElementById('content');
 const redditDataAll = await redditAll();
 
 const rAll = redditDataAll.map(obj => obj.data);
+
+// console.log(rAll)
 
 const pageAll = [];
 
@@ -52,9 +55,11 @@ rAll.forEach((obj) => {
 
 
     if (obj.media && obj.media.reddit_video) {
-        let thumbnailImg = document.createElement('img');
-        thumbnailImg.setAttribute('class', 'thumbnail');
-        thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+        let thumbnailImg = document.createElement('video');
+        thumbnailImg.setAttribute('class', 'video');
+        // thumbnailImg.setAttribute('type', 'video/mp4');
+        thumbnailImg.setAttribute('src', `${obj.media.reddit_video.fallback_url}`);
+        thumbnailImg.setAttribute('controls', '')
         thumbnailContainer.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
     } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
@@ -123,4 +128,12 @@ rAll.forEach((obj) => {
     pageAll.push(post)
 });
 
+document.getElementById('all-button').style.backgroundColor = 'gray'
+
 contentBox.append(...pageAll);
+
+const postComments = document.querySelectorAll('.num-comments')
+
+console.log(postComments)
+
+generateComments(postComments);

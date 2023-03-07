@@ -48,9 +48,11 @@ document.getElementById('all-button').addEventListener('click', async () => {
 
 
         if (obj.media && obj.media.reddit_video) {
-            let thumbnailImg = document.createElement('img');
-            thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            let thumbnailImg = document.createElement('video');
+            thumbnailImg.setAttribute('class', 'video');
+            thumbnailImg.setAttribute('type', 'video/mp4');
+            thumbnailImg.setAttribute('src', `${obj.media.reddit_video.fallback_url}`);
+            thumbnailImg.setAttribute('controls', '')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
         } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
@@ -125,4 +127,8 @@ document.getElementById('all-button').addEventListener('click', async () => {
     };
 
     contentBox.append(...pageAll);
+
+    document.getElementById('content-header').innerText = 'r/all';
+    document.getElementById('all-button').style.backgroundColor = 'gray';
+    document.getElementById('popular-button').style.backgroundColor = '';
 });
