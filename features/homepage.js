@@ -2,6 +2,9 @@ import { convertEpoch } from "../util/helper-functions.js";
 import { generateComments } from "./comments.js";
 
 //loading reddit/r/all on page load
+console.log('Hi, this is a student project. Feel free to look around.')
+
+const contentBox = document.getElementById('content');
 
 const redditAll = async () => {
     const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
@@ -12,16 +15,15 @@ const redditAll = async () => {
 try {
     const test = await redditAll();
 } catch {
-    alert('There was an error with Reddit')
+    contentBox.innerText = 'There seems to be a problem with Reddit, please try again later.'
 };
 
-const contentBox = document.getElementById('content');
+
+
 // handle r/all data
 const redditDataAll = await redditAll();
 
 const rAll = redditDataAll.map(obj => obj.data);
-
-// console.log(rAll)
 
 const pageAll = [];
 
@@ -57,7 +59,6 @@ rAll.forEach((obj) => {
     if (obj.media && obj.media.reddit_video) {
         let thumbnailImg = document.createElement('video');
         thumbnailImg.setAttribute('class', 'video');
-        // thumbnailImg.setAttribute('type', 'video/mp4');
         thumbnailImg.setAttribute('src', `${obj.media.reddit_video.fallback_url}`);
         thumbnailImg.setAttribute('controls', '')
         thumbnailContainer.appendChild(thumbnailImg);
@@ -116,7 +117,6 @@ rAll.forEach((obj) => {
 
     let numComments = document.createElement('span');
     numComments.setAttribute('class', 'num-comments');
-    numComments.setAttribute('data-permalink', `${obj.permalink}`)
     numComments.innerText = `${obj.num_comments} comments`;
     post.appendChild(numComments);
 
@@ -125,15 +125,23 @@ rAll.forEach((obj) => {
     upvotes.innerText = ` with ${obj.ups} upvotes`;
     post.appendChild(upvotes);
 
-    pageAll.push(post)
+    let commentBox = document.createElement('div');
+    commentBox.setAttribute('class', 'comment-box');
+    post.appendChild(commentBox);
+
+
+    let permalink = obj.permalink;
+
+    numComments.addEventListener('click', async () => {
+        const comments = await generateComments(permalink)
+        commentBox.innerHTML = comments;
+    });
+
+    pageAll.push(post);
 });
 
 document.getElementById('all-button').style.backgroundColor = 'gray'
 
+contentBox.innerText = '';
+
 contentBox.append(...pageAll);
-
-const postComments = document.querySelectorAll('.num-comments')
-
-console.log(postComments)
-
-generateComments(postComments);

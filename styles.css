@@ -1,10 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-
 }
 
-body {
+main {
     margin: 0 auto;
     width: 80%;
     max-width: 1000px;
@@ -17,11 +16,31 @@ body {
     padding: 5px;
 }
 
-#header {
+#header,
+#disclaimer {
     padding: 5px;
     margin: 8px 0;
     border: 2px solid black;
     border-radius: 5px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+}
+
+.num-comments:hover {
+    cursor: pointer;
+}
+
+.num-comments {
+    text-decoration: underline;
+}
+
+#nav {
+    padding: 5px 0;
 }
 
 .post-title {
@@ -29,16 +48,14 @@ body {
     padding-bottom: 5px;
 }
 
-#content-header {
-    padding-bottom: 5px;
-}
-
 #button-box {
-    padding: 5px 0;
-    padding-left: 5px;
+    position: sticky;
+    background-color: white;
+    top: 0;
+    z-index: 5;
+    padding: 5px;
     border: 2px solid black;
     border-radius: 5px;
-    margin: 8px 0;
 }
 
 .button {
@@ -47,4 +64,36 @@ body {
 
 .video {
     max-width: 100%;
+}
+
+#thumbnail-container {
+    border-bottom: 1px solid black;
+}
+
+.md {
+    margin: 0 auto;
+    width: 95%;
+    padding: 3px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.md>p>*>* {
+    max-width: 100%;
+    height: auto;
+}
+
+.comment-info {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+footer {
+    bottom: 0;
+    padding: 5px;
+    margin: 8px 0;
+    border: 2px solid black;
+    border-radius: 5px;
 }

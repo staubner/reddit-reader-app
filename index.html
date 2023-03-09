@@ -1,3 +1,5 @@
+<!-- Machine spirit, may your blessings be upon this unworthy code -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +14,6 @@
     <title>Featherlite Reddit</title>
 </head>
 
-<script type="module" src="./features/test.js"></script>
 <script src="./features/darklite.js" defer></script>
 <script type="module" src="./features/homepage.js" defer></script>
 <script type="module" src="./features/rAll.js" defer></script>
@@ -22,36 +23,35 @@
 
 
 <body>
-    <h1 id="header">Featherlite Reddit</h1>
     <main>
+        <a id="top"></a>
+        <h1 id="header">Featherlite Reddit</h1>
+        <p id="disclaimer">Warning: some things may not render properly, or at all. Comment count and thumbnails can be
+            clicked. Videos have no audio because Reddit</p>
+
         <div id="display">
-            <div id="search">
-                <form id="search-form" action="">
-                    <label for="search-text">Search</label>
-                    <input type="search" id="search-text" placeholder="enter a word or phrase">
-                    <input type="submit" id="search-button" class="button">
-                </form>
-            </div>
             <div id="button-box">
                 <h2 id="content-header">r/all</h2>
-                <button id="all-button" class="button">r/all</button>
-                <button id="popular-button" class="button">r/popular</button>
-                <button id="dark-lite" data-style="lite" class="button">Dark Mode</button>
+                <div id="nav">
+                    <p id="top-link"><a href="#top">Back to Top</a></p>
+                    <button id="all-button" class="button">r/all</button>
+                    <button id="popular-button" class="button">r/popular</button>
+                    <button id="dark-lite" data-style="lite" class="button">Dark Mode</button>
+                </div>
+                <div id="search">
+                    <form id="search-form" action="">
+                        <label for="search-text">Search</label>
+                        <input type="search" id="search-text" placeholder="enter a word or phrase">
+                        <input type="submit" id="search-button" class="button">
+                    </form>
+                </div>
             </div>
-            <div id="content"></div>
+            <div id="content"><br>Loading...</div>
         </div>
+        <footer>&#169; Sean Taubner</footer>
     </main>
-    <footer class="footer">Footer stuff</footer>
+
 </body>
 
 
 </html>
-
-<!-- arguments
-?limit sets how many listings you want per fetch
-?after ?before uses dynamically generated properties from the JSON object that will fetch the next batch of listings
-data.after
-data.before
-
-video post url to use?
-data.children[2].data.media.reddit_video.fallback_url -->

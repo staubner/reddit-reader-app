@@ -1,6 +1,5 @@
 import { convertEpoch } from "../util/helper-functions.js";
-
-export const postCommentsPop = [];
+import { generateComments } from "./comments.js";
 
 //handle r/popular data
 document.getElementById('popular-button').addEventListener('click', async () => {
@@ -111,7 +110,6 @@ document.getElementById('popular-button').addEventListener('click', async () => 
 
         let numComments = document.createElement('span');
         numComments.setAttribute('class', 'num-comments');
-        numComments.setAttribute('data-permalink', `${obj.permalink}`)
         numComments.innerText = `${obj.num_comments} comments`;
         post.appendChild(numComments);
 
@@ -119,6 +117,17 @@ document.getElementById('popular-button').addEventListener('click', async () => 
         upvotes.setAttribute('class', 'upvotes');
         upvotes.innerText = ` with ${obj.ups} upvotes`;
         post.appendChild(upvotes);
+
+        let commentBox = document.createElement('div');
+        commentBox.setAttribute('class', 'comment-box');
+        post.appendChild(commentBox);
+
+        let permalink = obj.permalink;
+
+        numComments.addEventListener('click', async () => {
+            const comments = await generateComments(permalink)
+            commentBox.innerHTML = comments;
+        });
 
         pagePopular.push(post)
     });

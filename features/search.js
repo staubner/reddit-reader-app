@@ -1,4 +1,5 @@
 import { convertEpoch } from "../util/helper-functions.js";
+import { generateComments } from "./comments.js";
 
 const searchForm = document.getElementById('search-form');
 
@@ -17,8 +18,6 @@ searchForm.addEventListener('submit', async (event) => {
     const searchData = searchResults.map(obj => obj.data);
 
     const contentBox = document.getElementById('content');
-
-    // console.log(searchData)
 
     const pageSearch = [];
 
@@ -120,6 +119,17 @@ searchForm.addEventListener('submit', async (event) => {
         upvotes.setAttribute('class', 'upvotes');
         upvotes.innerText = ` with ${obj.ups} upvotes`;
         post.appendChild(upvotes);
+
+        let commentBox = document.createElement('div');
+        commentBox.setAttribute('class', 'comment-box');
+        post.appendChild(commentBox);
+
+        let permalink = obj.permalink;
+
+        numComments.addEventListener('click', async () => {
+            const comments = await generateComments(permalink)
+            commentBox.innerHTML = comments;
+        });
 
         pageSearch.push(post);
     })
