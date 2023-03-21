@@ -13,7 +13,7 @@ const redditAll = async () => {
 };
 
 try {
-    const test = await fetch('https://www.reddit.com/r/all/json?limit=5');
+    const test = await fetch('https://www.reddit.com/r/all.json?limit=1');
 } catch {
     contentBox.innerText = 'There seems to be a problem with Reddit, please try again later.'
 };
