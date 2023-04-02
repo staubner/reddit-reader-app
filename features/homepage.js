@@ -6,18 +6,18 @@ console.log('Hi, this is a student project. Feel free to look around.')
 
 const contentBox = document.getElementById('content');
 
-let redditAll = [];
+let redditDataAll = [];
 try {
     const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
     const json = await response.json();
-    redditAll.push(json.data.children);
+    redditDataAll = json.data.children;
 } 
 catch {
     contentBox.innerText = 'There seems to be a problem with Reddit, please try again later.'
 };
 
 // handle r/all data
-const redditDataAll = await redditAll();
+//const redditDataAll = await redditAll();
 
 const rAll = redditDataAll.map(obj => obj.data);
 
