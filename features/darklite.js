@@ -29,7 +29,6 @@ const darkMode = () => {
 if (isLite() === 'dark') {
     body.style.backgroundColor = '#333';
     body.style.color = 'whitesmoke';
-    styleBtn.dataset.style = 'dark';
     nav.style.backgroundColor = '#333';
     a.style.color = 'white';
     styleBtn.innerText = 'Light Mode'
@@ -46,7 +45,7 @@ if (isLite() === 'dark') {
 styleBtn.addEventListener('click', () => {
     if (isLite() === 'dark') {
         liteMode();
-    } else if (isLite() === 'lite') {
+    } else {
         darkMode();
     }
 });
