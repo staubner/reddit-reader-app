@@ -17,7 +17,6 @@ catch {
 };
 
 // handle r/all data
-
 const rAll = redditDataAll.map(obj => obj.data);
 
 const pageAll = [];
