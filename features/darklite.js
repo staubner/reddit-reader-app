@@ -33,14 +33,6 @@ if (isLite() === 'dark') {
     a.style.color = 'white';
     styleBtn.innerText = 'Light Mode'
 }
-// else {
-//     body.style.backgroundColor = 'white';
-//     body.style.color = 'black';
-//     styleBtn.dataset.style = 'lite'
-//     nav.style.backgroundColor = 'white';
-//     a.style.color = 'black';
-//     styleBtn.innerText = 'Dark Mode';
-// }
 
 styleBtn.addEventListener('click', () => {
     if (isLite() === 'dark') {
