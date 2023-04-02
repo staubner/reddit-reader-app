@@ -4,7 +4,7 @@ const nav = document.getElementById('button-box')
 const a = document.querySelector('a');
 
 const isLite = () => {
-    const mode = localStorage.getItem('mode');
+    const mode = window.localStorage.getItem('mode');
     return mode;
 };
 
@@ -14,7 +14,7 @@ const liteMode = () => {
     nav.style.backgroundColor = 'white';
     a.style.color = 'black';
     styleBtn.innerText = 'Dark Mode';
-    localStorage.setItem('mode', 'lite');
+    window.localStorage.setItem('mode', 'lite');
 };
 
 const darkMode = () => {
@@ -23,7 +23,7 @@ const darkMode = () => {
     nav.style.backgroundColor = '#333';
     a.style.color = 'white';
     styleBtn.innerText = 'Light Mode'
-    localStorage.setItem('mode', 'dark');
+    window.localStorage.setItem('mode', 'dark');
 };
 
 if (isLite() === 'dark') {
