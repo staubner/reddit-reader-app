@@ -10,7 +10,7 @@ let redditAll = [];
 try {
     const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
     const json = await response.json();
-    redditAll = json.data.children;
+    redditAll.push(json.data.children);
 } 
 catch {
     contentBox.innerText = 'There seems to be a problem with Reddit, please try again later.'
