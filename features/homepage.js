@@ -6,7 +6,7 @@ console.log('Hi, this is a student project. Feel free to look around.')
 
 const contentBox = document.getElementById('content');
 
-let redditDataAll = [];
+let redditDataAll;
 try {
     const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
     const json = await response.json();
