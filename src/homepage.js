@@ -132,6 +132,14 @@ rAll.forEach((obj) => {
         } else {
             const comments = await generateComments(permalink)
             commentBox.innerHTML = comments;
+
+            // const hideComments = document.createElement('button');
+            // hideComments.setAttribute('class', 'hide-comments button');
+            // hideComments.innerText = 'Hide Comments';
+            // commentBox.appendChild(hideComments);
+            // hideComments.addEventListener('click', () => {
+            //     commentBox.innerHTML = '';
+            // })
         }
     });
 

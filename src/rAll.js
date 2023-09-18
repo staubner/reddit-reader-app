@@ -140,7 +140,9 @@ document.getElementById('all-button').addEventListener('click', async () => {
 
     document.getElementById('content-header').innerText = 'r/all';
     document.getElementById('all-button').style.backgroundColor = 'gray';
+    document.getElementById('all-button').style.border = 'gray';
     document.getElementById('popular-button').style.backgroundColor = '';
+    document.getElementById('popular-button').style.border = '';
 
     contentBox.append(...pageAll);
 });

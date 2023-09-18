@@ -9,6 +9,10 @@ main {
     max-width: 1000px;
 }
 
+/* body {
+    transition: all 0.3s ease 0.1s;
+} */
+
 .post {
     border: 2px solid black;
     border-radius: 5px;
@@ -24,18 +28,27 @@ main {
     border-radius: 5px;
 }
 
+#top-link:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: background-color 0.3s linear;
+}
+
 a,
-a:visited,
 a:hover,
+a:visited,
 a:active {
     color: inherit;
 }
 
 .num-comments:hover {
     cursor: pointer;
+    background-color: gray;
+    transition: background-color 0.2s ease;
 }
 
 .num-comments {
+    transition: background-color 0.2s ease;
     text-decoration: underline;
 }
 
@@ -56,10 +69,27 @@ a:active {
     padding: 5px;
     border: 2px solid black;
     border-radius: 5px;
+    /* transition: all 0.3s ease 0.1s; */
 }
+
+/* #button-box>* {
+    transition: all 0.3s ease 0.1s;
+} */
+
+/* #all-button {
+    border: grey;
+    background-color: grey;
+} */
 
 .button {
     padding: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: background-color 0.2s ease;
 }
 
 .video {
@@ -88,6 +118,10 @@ a:active {
     margin: 5px;
     padding: 3px;
     border-radius: 5px;
+}
+
+.hide-comments {
+    margin-left: 5px;
 }
 
 footer {

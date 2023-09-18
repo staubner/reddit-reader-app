@@ -140,7 +140,9 @@ document.getElementById('popular-button').addEventListener('click', async () => 
 
     document.getElementById('content-header').innerText = 'r/popular';
     document.getElementById('all-button').style.backgroundColor = '';
+    document.getElementById('all-button').style.border = '';
     document.getElementById('popular-button').style.backgroundColor = 'gray';
+    document.getElementById('popular-button').style.border = 'gray';
 
     contentBox.append(...pagePopular);
 });
