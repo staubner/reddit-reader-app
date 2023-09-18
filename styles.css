@@ -143,6 +143,15 @@ footer {
     }
 
     .post>span {
-        font-size: 12px;
+        font-size: 14px;
+    }
+
+    .comment-info>* {
+        font-size: 16px;
+    }
+
+    .md>p {
+        font-size: 14px;
+        line-height: 18px;
     }
 }
