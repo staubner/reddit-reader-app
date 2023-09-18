@@ -1,11 +1,11 @@
 import { convertEpoch } from "../util/helper-functions.js";
 import { generateComments } from "./comments.js";
 
-//handle r/all data
-document.getElementById('all-button').addEventListener('click', async () => {
+//handle r/popular data
+document.getElementById('popular-button').addEventListener('click', async () => {
 
-    const redditAll = async () => {
-        const response = await fetch(`https://www.reddit.com/r/all.json?limit=25`);
+    const redditPopular = async () => {
+        const response = await fetch(`https://www.reddit.com/r/popular.json?limit=25`);
         const json = await response.json();
         return json.data.children;
     };
@@ -13,13 +13,13 @@ document.getElementById('all-button').addEventListener('click', async () => {
     const contentBox = document.getElementById('content');
 
     // handle r/all data
-    const redditDataAll = await redditAll();
+    const redditDataPopular = await redditPopular();
 
-    const rAll = redditDataAll.map(obj => obj.data);
+    const rPopular = redditDataPopular.map(obj => obj.data);
 
-    const pageAll = [];
+    const pagePopular = [];
 
-    rAll.forEach((obj) => {
+    rPopular.forEach((obj) => {
 
         const post = document.createElement('div');
         post.setAttribute('class', 'post');
@@ -59,7 +59,7 @@ document.getElementById('all-button').addEventListener('click', async () => {
         } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
             const thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
         } else if (obj.thumbnail === 'image') {
@@ -81,7 +81,7 @@ document.getElementById('all-button').addEventListener('click', async () => {
             thumbnailContainer.appendChild(imgLink)
             const thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
             imgLink.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
         } else if (obj.media && obj.media.oembed) {
@@ -129,7 +129,7 @@ document.getElementById('all-button').addEventListener('click', async () => {
             commentBox.innerHTML = comments;
         });
 
-        pageAll.push(post)
+        pagePopular.push(post)
     });
 
 
@@ -137,9 +137,9 @@ document.getElementById('all-button').addEventListener('click', async () => {
         contentBox.removeChild(contentBox.firstChild);
     };
 
-    contentBox.append(...pageAll);
+    document.getElementById('content-header').innerText = 'r/popular';
+    document.getElementById('all-button').style.backgroundColor = '';
+    document.getElementById('popular-button').style.backgroundColor = 'gray';
 
-    document.getElementById('content-header').innerText = 'r/all';
-    document.getElementById('all-button').style.backgroundColor = 'gray';
-    document.getElementById('popular-button').style.backgroundColor = '';
+    contentBox.append(...pagePopular);
 });

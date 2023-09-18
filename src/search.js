@@ -60,7 +60,7 @@ searchForm.addEventListener('submit', async (event) => {
         } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
             const thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
             thumbnailContainer.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
         } else if (obj.thumbnail === 'image') {
@@ -82,7 +82,7 @@ searchForm.addEventListener('submit', async (event) => {
             thumbnailContainer.appendChild(imgLink)
             const thumbnailImg = document.createElement('img');
             thumbnailImg.setAttribute('class', 'thumbnail');
-            thumbnailImg.setAttribute('src', '../src/icons8-no-image-100.png')
+            thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
             imgLink.appendChild(thumbnailImg);
             post.appendChild(thumbnailContainer);
         } else if (obj.media && obj.media.oembed) {
