@@ -125,8 +125,12 @@ document.getElementById('popular-button').addEventListener('click', async () => 
         const permalink = obj.permalink;
 
         numComments.addEventListener('click', async () => {
-            const comments = await generateComments(permalink)
-            commentBox.innerHTML = comments;
+            if (commentBox.firstChild) {
+                commentBox.innerHTML = '';
+            } else {
+                const comments = await generateComments(permalink)
+                commentBox.innerHTML = comments;
+            }
         });
 
         pagePopular.push(post)
