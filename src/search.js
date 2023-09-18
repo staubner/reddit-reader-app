@@ -134,9 +134,7 @@ searchForm.addEventListener('submit', async (event) => {
         pageSearch.push(post);
     })
 
-    while (contentBox.firstChild) {
-        contentBox.removeChild(contentBox.firstChild)
-    };
+    contentBox.innerText = '';
 
     document.getElementById('content-header').innerText = `Search Results for "${event.target[0].value}"`
 

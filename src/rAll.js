@@ -132,14 +132,11 @@ document.getElementById('all-button').addEventListener('click', async () => {
         pageAll.push(post)
     });
 
-
-    while (contentBox.firstChild) {
-        contentBox.removeChild(contentBox.firstChild);
-    };
-
-    contentBox.append(...pageAll);
+    contentBox.innerText = '';
 
     document.getElementById('content-header').innerText = 'r/all';
     document.getElementById('all-button').style.backgroundColor = 'gray';
     document.getElementById('popular-button').style.backgroundColor = '';
+
+    contentBox.append(...pageAll);
 });

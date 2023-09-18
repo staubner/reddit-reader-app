@@ -132,10 +132,7 @@ document.getElementById('popular-button').addEventListener('click', async () => 
         pagePopular.push(post)
     });
 
-
-    while (contentBox.firstChild) {
-        contentBox.removeChild(contentBox.firstChild);
-    };
+    contentBox.innerText = '';
 
     document.getElementById('content-header').innerText = 'r/popular';
     document.getElementById('all-button').style.backgroundColor = '';
