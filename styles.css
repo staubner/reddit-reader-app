@@ -29,23 +29,10 @@ main {
     transition: background-color 0.3s linear;
 }
 
-#top-link:hover {
-    cursor: pointer;
-    background-color: gray;
-    transition: background-color 0.3s linear;
-}
-
 a,
-a:hover,
 a:visited,
 a:active {
     color: inherit;
-}
-
-.num-comments:hover {
-    cursor: pointer;
-    background-color: gray;
-    transition: background-color 0.2s ease;
 }
 
 .num-comments {
@@ -76,12 +63,6 @@ a:active {
     padding: 3px;
     transition: background-color 0.2s ease;
     background-color: white;
-}
-
-.button:hover {
-    cursor: pointer;
-    background-color: gray;
-    transition: background-color 0.2s ease;
 }
 
 .video {
@@ -122,4 +103,30 @@ footer {
     margin: 8px 0;
     border: 2px solid black;
     border-radius: 5px;
+}
+
+@media (hover: hover) {
+
+    .button:hover {
+        cursor: pointer;
+        background-color: gray;
+        transition: background-color 0.2s ease;
+    }
+
+    a:hover {
+        color: inherit;
+    }
+
+    #top-link:hover {
+        cursor: pointer;
+        background-color: gray;
+        transition: background-color 0.3s linear;
+    }
+
+    .num-comments:hover {
+        cursor: pointer;
+        background-color: gray;
+        transition: background-color 0.2s ease;
+    }
+    
 }
