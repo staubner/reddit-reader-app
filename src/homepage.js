@@ -52,17 +52,36 @@ rAll.forEach((obj) => {
 
     if (obj.media && obj.media.reddit_video) {
         const thumbnailImg = document.createElement('video');
+        //video element
         thumbnailImg.setAttribute('class', 'video');
-        thumbnailImg.setAttribute('src', `${obj.media.reddit_video.fallback_url}`);
-        thumbnailImg.setAttribute('controls', '')
+        thumbnailImg.setAttribute('type', 'video/mp4');
+        thumbnailImg.setAttribute('controls', '');
+        const vidSource = document.createElement('source');
+        const vidUrl = obj.media.reddit_video.fallback_url.slice(0, 45);
+        vidSource.setAttribute('src', `${vidUrl}`)
+        thumbnailImg.appendChild(vidSource);
+        //audio
+        if (obj.media.reddit_video.has_audio) {
+            const audio = document.createElement('audio');
+            audio.setAttribute('controls', '');
+            audio.setAttribute('type', 'audio/mp4');
+            const audioSource = document.createElement('source');
+            const audioUrl = obj.media.reddit_video.fallback_url.slice(0, 36);
+            audioSource.setAttribute('src', `${audioUrl}_AUDIO_128.mp4`)
+            audio.appendChild(audioSource);
+            thumbnailImg.appendChild(audio);
+            thumbnailImg.onplay = function () { audio.play() };
+            thumbnailImg.onpause = function () { audio.pause() };
+            thumbnailImg.onseeking = function () { audio.currentTime = thumbnailImg.currentTime ;}
+        }
         thumbnailContainer.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
     } else if (obj.thumbnail === 'self' && obj.url.includes('reddit') || obj.thumbnail === 'nsfw' || obj.thumbnail === 'spoiler') {
-        const thumbnailImg = document.createElement('img');
-        thumbnailImg.setAttribute('class', 'thumbnail');
-        thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
-        thumbnailContainer.appendChild(thumbnailImg);
-        post.appendChild(thumbnailContainer);
+        const noImage = document.createElement('p');
+        noImage.setAttribute('class', 'no-image');
+        noImage.innerHTML = 'No image or link  ¯\\_(ツ)_/¯'
+        thumbnailContainer.appendChild(noImage);
+        post.appendChild(noImage);
     } else if (obj.thumbnail === 'image') {
         const imgLink = document.createElement('a');
         imgLink.setAttribute('href', `${obj.url}`);
@@ -132,14 +151,6 @@ rAll.forEach((obj) => {
         } else {
             const comments = await generateComments(permalink)
             commentBox.innerHTML = comments;
-
-            // const hideComments = document.createElement('button');
-            // hideComments.setAttribute('class', 'hide-comments button');
-            // hideComments.innerText = 'Hide Comments';
-            // commentBox.appendChild(hideComments);
-            // hideComments.addEventListener('click', () => {
-            //     commentBox.innerHTML = '';
-            // })
         }
     });
 

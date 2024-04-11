@@ -74,6 +74,14 @@ a:active {
     border-bottom: 1px solid black;
 }
 
+.thumbnail {
+    max-width: 100%;
+}
+
+.no-image {
+    padding: 10px 0px;
+}
+
 .md {
     margin: 0 auto;
     width: 95%;
