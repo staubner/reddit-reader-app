@@ -145,7 +145,9 @@ searchForm.addEventListener('submit', async (event) => {
     document.getElementById('search-text').value = '';
 
     document.getElementById('all-button').style.backgroundColor = '';
+    document.getElementById('all-button').style.border = '';
     document.getElementById('popular-button').style.backgroundColor = '';
+    document.getElementById('popular-button').style.border = '';
 
     contentBox.append(...pageSearch);
 });
