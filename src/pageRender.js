@@ -77,7 +77,7 @@ export const pageRender = (pageData, epoch, generateComments) => {
         thumbnailContainer.appendChild(imgLink)
         const thumbnailImg = document.createElement('img');
         thumbnailImg.setAttribute('class', 'thumbnail');
-        thumbnailImg.setAttribute('src', '../assets/icons8-no-image-100.png')
+        thumbnailImg.setAttribute('src', './src/assets/icons8-no-image-100.png')
         imgLink.appendChild(thumbnailImg);
         post.appendChild(thumbnailContainer);
     } else if (pageData.media && pageData.media.oembed) {
@@ -126,8 +126,13 @@ export const pageRender = (pageData, epoch, generateComments) => {
             commentBox.innerHTML = '';
         } else {
             commentBox.innerHTML = 'Loading...'
-            const comments = await generateComments(permalink)
-            commentBox.innerHTML = comments;
+            try {
+                const comments = await generateComments(permalink)
+                commentBox.innerHTML = comments;
+            } catch {
+                commentBox.style.color = 'red'
+                commentBox.innerHTML = 'There was a problem getting the comments';
+            }
         }
     });
 

@@ -1,4 +1,4 @@
-import { convertEpoch } from "../util/helper-functions.js";
+import { convertEpoch } from "./util/helper-functions.js";
 
 export const generateComments = async (permalink) => {
     const response = await fetch(`https://www.reddit.com${permalink}.json`);
