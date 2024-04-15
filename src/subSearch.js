@@ -37,7 +37,7 @@ subSearchForm.addEventListener('submit', async (event) => {
 
     document.getElementById('content-header').innerText = `Search Results for "${event.target[0].value}"`
 
-    document.getElementById('search-text').value = '';
+    document.getElementById('sub-search-text').value = '';
 
     document.getElementById('all-button').style.backgroundColor = '';
     document.getElementById('all-button').style.border = '';
