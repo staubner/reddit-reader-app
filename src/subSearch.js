@@ -2,9 +2,9 @@ import { convertEpoch } from "./util/helper-functions.js";
 import { generateComments } from "./comments.js";
 import { pageRender } from "./pageRender.js";
 
-const searchForm = document.getElementById('search-form');
+const subSearchForm = document.getElementById('search-sub-form');
 
-searchForm.addEventListener('submit', async (event) => {
+subSearchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const contentBox = document.getElementById('content');
@@ -13,7 +13,7 @@ searchForm.addEventListener('submit', async (event) => {
     //send search terms
     const getSearch = async () => {
         try {
-            const response = await fetch(`https://www.reddit.com/search.json?q=${event.target[0].value}`);
+            const response = await fetch(`https://www.reddit.com/search.json?q=subreddit:${event.target[0].value}`);
             const json = await response.json();
             return json.data.children;
         } catch {
@@ -23,7 +23,7 @@ searchForm.addEventListener('submit', async (event) => {
     }
 
     const searchResults = await getSearch();
-
+    
     const searchData = searchResults.map(obj => obj.data);
 
     const page = [];
@@ -45,4 +45,5 @@ searchForm.addEventListener('submit', async (event) => {
     document.getElementById('popular-button').style.border = '';
 
     contentBox.append(...page);
+
 });

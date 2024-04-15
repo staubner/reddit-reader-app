@@ -5,7 +5,8 @@ export const generateComments = async (permalink) => {
     const json = await response.json();
     const commentsData = json[1].data.children.map(comment => comment.data);
 
-    commentsData.pop();
+    if (commentsData.length > 1) commentsData.pop();
+    if (commentsData.length === 0) return 'There appear to be no comments...'
 
     const commentsArray = commentsData.map((comment) => {
         const template = document.createElement('template');

@@ -19,6 +19,7 @@
 <script type="module" src="./src/rAll.js" defer></script>
 <script type="module" src="./src/rPopular.js" defer></script>
 <script type="module" src="./src/search.js" defer></script>
+<script type="module" src="./src/subSearch.js" defer></script>
 
 
 <body>
@@ -31,18 +32,27 @@
             <div id="button-box" style="transition: all ease;">
                 <h2 id="content-header">r/all</h2>
                 <div id="nav">
-                    <span id="top-link"><a href="#top">Back to Top</a></span>
-                    <br>
+                    <div id="top-link"><a href="#top">Back to Top</a></div>
+                    
                     <button id="all-button" class="button" style="background-color: grey; border: grey;">r/all</button>
                     <button id="popular-button" class="button">r/popular</button>
                     <button id="dark-lite" class="button">Dark Mode</button>
                 </div>
-                <div id="search">
-                    <form id="search-form" action="">
-                        <label for="search-text">Search</label>
-                        <input type="search" id="search-text" placeholder="enter a word or phrase">
-                        <input type="submit" id="search-button" class="button">
-                    </form>
+                <div id="ui-box">
+                    <div id="search">
+                        <form id="search-form" action="">
+                            <label for="search-text">Search</label>
+                            <input type="search" id="search-text" placeholder="enter a word or phrase">
+                            <input type="submit" id="search-button" class="button">
+                        </form>
+                    </div>
+                    <div id="subreddit-search">
+                        <form id="search-sub-form" action="">
+                            <label for="search-text">Find Subreddit</label>
+                            <input type="search" id="search-text" placeholder="enter a subreddit to find">
+                            <input type="submit" id="search-button" class="button">
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="content"><br>Loading...</div>

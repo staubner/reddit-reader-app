@@ -44,6 +44,12 @@ a:active {
     padding: 5px 0;
 }
 
+#ui-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .post-title {
     border-bottom: 1px solid black;
     padding-bottom: 5px;
@@ -140,7 +146,36 @@ footer {
     
 }
 
+@media only screen and (max-width: 800px) {
+
+    #top-link {
+        text-align: center;
+        padding-bottom: 4px;
+    }
+
+    #button-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #ui-box {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    #ui-box > * {
+        padding: 2px 0px;
+        
+    }
+
+    #search, #subreddit-search {
+        margin: 0 auto;
+    }
+}
+
 @media only screen and (max-width: 500px) {
+
     .thumbnail, .video {
         display: block;
         margin: 0 auto;
